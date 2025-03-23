@@ -11,13 +11,18 @@ export class AwsS3Service {
 
   constructor(private readonly configService: ConfigService) {
     this.client = new S3Client();
-    this.bucket = configService
-      .get<string>('AWS_S3_BUCKET', 'default-bucket');
-    this.expiresInSeconds = configService
-      .get<number>('AWS_S3_OBJECT_EXPIRY_SECOND', 360);
+    this.bucket = configService.get<string>('AWS_S3_BUCKET', 'default-bucket');
+    this.expiresInSeconds = configService.get<number>(
+      'AWS_S3_OBJECT_EXPIRY_SECOND',
+      360,
+    );
   }
 
-  public async getUploadPresignedUrl(key: string, mimeType: string, fileSize: number): Promise<string> {
+  public async getUploadPresignedUrl(
+    key: string,
+    mimeType: string,
+    fileSize: number,
+  ): Promise<string> {
     const params = {
       Bucket: this.bucket,
       Key: key,
@@ -25,10 +30,8 @@ export class AwsS3Service {
       ContentLength: fileSize,
     };
 
-    return await getSignedUrl(
-      this.client,
-      new PutObjectCommand(params),
-      { expiresIn: this.expiresInSeconds }
-    );
+    return await getSignedUrl(this.client, new PutObjectCommand(params), {
+      expiresIn: this.expiresInSeconds,
+    });
   }
 }

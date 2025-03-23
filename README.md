@@ -3,7 +3,7 @@
 </p>
 
 ## Description
-If you have ended up here, its likely because you read the article [here](blog.backinagist.com), and if not, I have added necessary the details here to make your life easier. But I do recommend you reading the article at least once.
+If you have ended up here, its likely because you read the article [here](https://medium.com/p/f8b75250ce9d), and if not, I have added necessary the details here to make your life easier. But I do recommend you reading the article at least once.
 
 ## Install & Run
 
